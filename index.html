@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dati Macroeconomici</title>
+  <title>Dati Macroeconomici Interattivi</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -22,10 +22,36 @@
       color: red;
       display: none;
     }
+    .form-container {
+      margin-top: 30px;
+    }
+    input[type="text"], input[type="number"] {
+      padding: 8px;
+      margin: 10px;
+      width: 200px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    table {
+      margin-top: 20px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
   </style>
 </head>
 <body>
-  <h1>Dati Macroeconomici</h1>
+  <h1>Dati Macroeconomici Interattivi</h1>
   <p>Inserisci la password per accedere alla pagina.</p>
 
   <!-- Form per l'inserimento della password -->
@@ -38,56 +64,63 @@
   <!-- Sezione con i dati macroeconomici che verrà visualizzata dopo aver inserito la password corretta -->
   <div id="data-content" class="hidden-content">
     <h2>Sezione Dati Macroeconomici</h2>
-    <table border="1" cellspacing="0" cellpadding="10" style="margin-top: 20px; width: 80%; margin-left: auto; margin-right: auto;">
-      <tr>
-        <th>Dato Macroeconomico</th>
-        <th>Descrizione</th>
-      </tr>
-      <tr>
-        <td>Tasso di Interesse</td>
-        <td>Indica il tasso di interesse fissato dalla banca centrale per i prestiti.</td>
-      </tr>
-      <tr>
-        <td>Indice ISM non Manifatturiero</td>
-        <td>Un indice che misura l'attività economica nel settore dei servizi.</td>
-      </tr>
-      <tr>
-        <td>Scorte di Petrolio Greggio</td>
-        <td>Le scorte di petrolio greggio negli Stati Uniti, un dato chiave per il mercato energetico.</td>
-      </tr>
-      <tr>
-        <td>Richieste Iniziali dei Sussidi di Disoccupazione</td>
-        <td>Dato settimanale che misura il numero di persone che richiedono il sussidio di disoccupazione.</td>
-      </tr>
-      <tr>
-        <td>IPC e IPC Core</td>
-        <td>Misura l'inflazione, l'IPC Core esclude gli alimentari e l'energia per una visione più chiara.</td>
-      </tr>
-      <tr>
-        <td>IPP (Indice dei Prezzi alla Produzione)</td>
-        <td>Misura i cambiamenti nei prezzi dei beni e dei servizi venduti dai produttori.</td>
-      </tr>
-      <tr>
-        <td>Tasso di Disoccupazione</td>
-        <td>Indica la percentuale di disoccupati rispetto alla forza lavoro attiva.</td>
-      </tr>
-      <tr>
-        <td>Salario Orario Medio</td>
-        <td>Indica l'andamento dei salari orari, un dato utile per misurare la pressione inflazionistica.</td>
-      </tr>
-      <tr>
-        <td>ADP</td>
-        <td>Un report sulle variazioni nell'occupazione non agricola, prodotto dalla società ADP.</td>
-      </tr>
-      <tr>
-        <td>NFP (Non-Farm Payrolls)</td>
-        <td>Il numero di persone impiegate in settori non agricoli negli Stati Uniti, un dato fondamentale per l'economia.</td>
-      </tr>
-      <tr>
-        <td>PIL (Prodotto Interno Lordo)</td>
-        <td>Misura il valore totale di tutti i beni e servizi prodotti in un paese.</td>
-      </tr>
-    </table>
+    
+    <!-- Form per inserire i dati -->
+    <div class="form-container">
+      <h3>Inserisci i Dati</h3>
+      <form id="data-form">
+        <label for="interestRate">Tasso di Interesse:</label>
+        <input type="number" id="interestRate" placeholder="Inserisci tasso di interesse"><br>
+
+        <label for="ISM">Indice ISM non Manifatturiero:</label>
+        <input type="number" id="ISM" placeholder="Inserisci ISM"><br>
+
+        <label for="oilStocks">Scorte di Petrolio Greggio:</label>
+        <input type="number" id="oilStocks" placeholder="Inserisci scorte di petrolio"><br>
+
+        <label for="unemploymentClaims">Richieste Sussidi Disoccupazione:</label>
+        <input type="number" id="unemploymentClaims" placeholder="Inserisci richieste sussidi"><br>
+
+        <label for="CPI">IPC:</label>
+        <input type="number" id="CPI" placeholder="Inserisci IPC"><br>
+
+        <label for="PPI">IPP:</label>
+        <input type="number" id="PPI" placeholder="Inserisci IPP"><br>
+
+        <label for="unemploymentRate">Tasso di Disoccupazione:</label>
+        <input type="number" id="unemploymentRate" placeholder="Inserisci tasso disoccupazione"><br>
+
+        <label for="avgHourlyWage">Salario Orario Medio:</label>
+        <input type="number" id="avgHourlyWage" placeholder="Inserisci salario orario"><br>
+
+        <label for="ADP">ADP:</label>
+        <input type="number" id="ADP" placeholder="Inserisci ADP"><br>
+
+        <label for="NFP">NFP:</label>
+        <input type="number" id="NFP" placeholder="Inserisci NFP"><br>
+
+        <label for="GDP">PIL:</label>
+        <input type="number" id="GDP" placeholder="Inserisci PIL"><br>
+
+        <button type="button" onclick="submitData()">Salva Dati</button>
+      </form>
+    </div>
+
+    <!-- Tabella per visualizzare i dati inseriti -->
+    <div id="data-display" class="hidden-content">
+      <h3>Visualizza Dati Inseriti</h3>
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Dato Macroeconomico</th>
+            <th>Valore Inserito</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- I dati verranno inseriti qui -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script>
@@ -102,6 +135,39 @@
       } else {
         document.querySelector('.error-message').style.display = 'block'; // Mostra il messaggio di errore
       }
+    }
+
+    // Funzione per salvare e visualizzare i dati inseriti
+    function submitData() {
+      var data = {
+        "Tasso di Interesse": document.getElementById('interestRate').value,
+        "Indice ISM non Manifatturiero": document.getElementById('ISM').value,
+        "Scorte di Petrolio Greggio": document.getElementById('oilStocks').value,
+        "Richieste Sussidi Disoccupazione": document.getElementById('unemploymentClaims').value,
+        "IPC": document.getElementById('CPI').value,
+        "IPP": document.getElementById('PPI').value,
+        "Tasso di Disoccupazione": document.getElementById('unemploymentRate').value,
+        "Salario Orario Medio": document.getElementById('avgHourlyWage').value,
+        "ADP": document.getElementById('ADP').value,
+        "NFP": document.getElementById('NFP').value,
+        "PIL": document.getElementById('GDP').value
+      };
+
+      var tableBody = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+      tableBody.innerHTML = "";  // Pulisce la tabella prima di aggiungere i nuovi dati
+
+      for (var key in data) {
+        if (data[key]) {
+          var newRow = tableBody.insertRow();
+          var cell1 = newRow.insertCell(0);
+          var cell2 = newRow.insertCell(1);
+          cell1.textContent = key;
+          cell2.textContent = data[key];
+        }
+      }
+
+      // Mostra la tabella con i dati
+      document.getElementById('data-display').style.display = 'block';
     }
   </script>
 </body>
