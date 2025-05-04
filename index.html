@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dati Macroeconomici</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .hidden-content {
+      display: none;
+    }
+    .password-container {
+      margin-bottom: 20px;
+    }
+    .error-message {
+      color: red;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dati Macroeconomici</h1>
+  <p>Inserisci la password per accedere alla pagina.</p>
+
+  <!-- Form per l'inserimento della password -->
+  <div class="password-container">
+    <input type="password" id="password" placeholder="Inserisci la password" />
+    <button onclick="checkPassword()">Accedi</button>
+    <p class="error-message">Password errata. Riprova.</p>
+  </div>
+
+  <!-- Sezione con i dati macroeconomici che verrà visualizzata dopo aver inserito la password corretta -->
+  <div id="data-content" class="hidden-content">
+    <h2>Sezione Dati Macroeconomici</h2>
+    <table border="1" cellspacing="0" cellpadding="10" style="margin-top: 20px; width: 80%; margin-left: auto; margin-right: auto;">
+      <tr>
+        <th>Dato Macroeconomico</th>
+        <th>Descrizione</th>
+      </tr>
+      <tr>
+        <td>Tasso di Interesse</td>
+        <td>Indica il tasso di interesse fissato dalla banca centrale per i prestiti.</td>
+      </tr>
+      <tr>
+        <td>Indice ISM non Manifatturiero</td>
+        <td>Un indice che misura l'attività economica nel settore dei servizi.</td>
+      </tr>
+      <tr>
+        <td>Scorte di Petrolio Greggio</td>
+        <td>Le scorte di petrolio greggio negli Stati Uniti, un dato chiave per il mercato energetico.</td>
+      </tr>
+      <tr>
+        <td>Richieste Iniziali dei Sussidi di Disoccupazione</td>
+        <td>Dato settimanale che misura il numero di persone che richiedono il sussidio di disoccupazione.</td>
+      </tr>
+      <tr>
+        <td>IPC e IPC Core</td>
+        <td>Misura l'inflazione, l'IPC Core esclude gli alimentari e l'energia per una visione più chiara.</td>
+      </tr>
+      <tr>
+        <td>IPP (Indice dei Prezzi alla Produzione)</td>
+        <td>Misura i cambiamenti nei prezzi dei beni e dei servizi venduti dai produttori.</td>
+      </tr>
+      <tr>
+        <td>Tasso di Disoccupazione</td>
+        <td>Indica la percentuale di disoccupati rispetto alla forza lavoro attiva.</td>
+      </tr>
+      <tr>
+        <td>Salario Orario Medio</td>
+        <td>Indica l'andamento dei salari orari, un dato utile per misurare la pressione inflazionistica.</td>
+      </tr>
+      <tr>
+        <td>ADP</td>
+        <td>Un report sulle variazioni nell'occupazione non agricola, prodotto dalla società ADP.</td>
+      </tr>
+      <tr>
+        <td>NFP (Non-Farm Payrolls)</td>
+        <td>Il numero di persone impiegate in settori non agricoli negli Stati Uniti, un dato fondamentale per l'economia.</td>
+      </tr>
+      <tr>
+        <td>PIL (Prodotto Interno Lordo)</td>
+        <td>Misura il valore totale di tutti i beni e servizi prodotti in un paese.</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // Funzione per controllare la password
+    function checkPassword() {
+      var password = document.getElementById('password').value;
+      var correctPassword = "macroeconomica"; // Sostituisci con la tua password
+
+      if (password === correctPassword) {
+        document.getElementById('data-content').style.display = 'block';  // Mostra i dati
+        document.querySelector('.password-container').style.display = 'none';  // Nascondi la sezione della password
+      } else {
+        document.querySelector('.error-message').style.display = 'block'; // Mostra il messaggio di errore
+      }
+    }
+  </script>
+</body>
+</html>
